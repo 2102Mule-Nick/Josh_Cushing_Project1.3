@@ -1,0 +1,35 @@
+package com.frontdesk.service;
+
+import java.util.List;
+
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Room;
+import com.frontdesk.pojo.Stay;
+
+public interface RoomService {
+	
+	// Method that returns a list of all rooms.
+	public List<Room> getAllRooms();
+
+	// Method that returns the room with the specified id.
+	public Room getRoomInfoById(int r_id);
+
+	// Method that returns a new room.
+	public void createNewRoom(String status, int bed_num, String bed_size, String lux_lev, float cpn);
+
+	// Method that deletes a room.
+	public void deleteRoom(int r_id);
+
+	// Method that returns a list of rooms with the specified status.
+	public List<Room> getRoomsByStatus(String status);
+
+	// Method that returns a list of reservations in the specified room.
+	public List<Reservation> getReservationsByRoom(int r_id);
+
+	// Method that returns a list of stays in the specified room.
+	public List<Stay> getStaysByRoom(int r_id);
+
+	// Method that returns a boolean that represents whether the
+	// status change in the specified room was successful or not.
+	public void setRoomStatus(String status, int r_id);
+}

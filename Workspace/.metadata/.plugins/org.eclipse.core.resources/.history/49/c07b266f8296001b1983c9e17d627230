@@ -1,0 +1,6 @@
+package com.staykeep.dao;
+
+//Interface for handling Database functions concerning OnlineUser objects.
+public interface OnlineUserDao {
+	
+}

@@ -1,0 +1,52 @@
+package com.frontdesk.service;
+
+import java.util.List;
+
+import com.frontdesk.pojo.OnlineUser;
+
+//NEEDS IMPLEMENTATION
+public class OnlineUserServiceFinder implements OnlineUserService {
+
+	@Override
+	public List<OnlineUser> getAllOnlineUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public OnlineUser getOnlineUserInfoById(int u_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void createNewOnlineUser(OnlineUser onlineUser) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteOnlineUser(int u_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setOnlineUserUserName(String user_name, int u_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setOnlineUserPassword(String pass_word, int u_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setOnlineUserEmail(String email, int u_id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,30 @@
+package com.staykeep.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.staykeep.daoimpl.OnlineUserDaoImpl;
+import com.staykeep.pojo.OnlineUser;
+
+public class OnlineUserController {
+	// OnlineUserDaoImpl object holding functionality.
+	private OnlineUserDaoImpl onlineUserDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setOnlineUserDaoImpl(OnlineUserDaoImpl onlineUserDaoImpl) {
+		this.onlineUserDaoImpl = onlineUserDaoImpl;
+	}
+
+//-----------------------------------------------------------------------------
+
+	// Controller method that returns a list of all OnlineUsers.
+	@GetMapping("/user")
+	public List<OnlineUser> getAllOnlineUsers() {
+		List<OnlineUser> userList = onlineUserDaoImpl.getAllOnlineUsers();
+		return userList;
+	}
+
+}

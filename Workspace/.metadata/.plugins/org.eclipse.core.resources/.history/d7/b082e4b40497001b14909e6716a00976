@@ -1,0 +1,126 @@
+package com.staykeep.controller;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.GuestDaoImpl;
+import com.staykeep.daoimpl.ReservationDaoImpl;
+import com.staykeep.pojo.Guest;
+import com.staykeep.pojo.Reservation;
+import com.staykeep.pojo.Stay;
+
+//REST Controller for all database functionality concerning reservation objects.
+@RestController
+public class ReservationController {
+	
+
+	// ReservationDaoImpl object holding functionality.
+	private ReservationDaoImpl reservationDaoImpl;
+
+	// GuestDaoImpl object holding functionality.
+	private GuestDaoImpl guestDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setReservationDaoImpl(ReservationDaoImpl reservationDaoImpl) {
+		this.reservationDaoImpl = reservationDaoImpl;
+	}
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setGuestDaoImpl(GuestDaoImpl guestDaoImpl) {
+		this.guestDaoImpl = guestDaoImpl;
+	}
+//--------------------------------------------------------------------------------------
+	//ONLY ACCEPTS/returns LONG FROMAT DATES? CHANGE??
+	
+	// Returns a list of all reservations.
+	@GetMapping("/reservation")
+	public List<Reservation> getAllRes() {
+		List<Reservation> reservationList = reservationDaoImpl.getAllRes();
+		return reservationList;
+	}
+
+	@GetMapping("/reservation/{res_id}")
+	public Reservation getResById(@PathVariable int res_id) {
+		Reservation reservation = reservationDaoImpl.getResById(res_id);
+		return reservation;
+	}
+
+	@PostMapping("/reservation/{res}/chitime/{ch_i_time}/chidate/{ch_i_date}/chotime/{ch_o_time}/chodate/{ch_o_date}/rid/{r_id}/uid/{u_id}/status/{status}")
+	public boolean createNewReservation(@PathVariable Time ch_i_time, @PathVariable Date ch_i_date,
+			@PathVariable Time ch_o_time, @PathVariable Date ch_o_date, @PathVariable int r_id, @PathVariable int u_id,
+			@PathVariable String status) {
+		boolean wasInserted = reservationDaoImpl.createNewReservation(ch_i_time, ch_i_date, ch_o_time, ch_o_date, r_id,
+				u_id, status);
+		return wasInserted;
+	}
+
+	@DeleteMapping("/reservation/{res_id}")
+	public boolean deleteRes(@PathVariable int res_id) {
+		boolean wasDeleted = reservationDaoImpl.deleteRes(res_id);
+		return wasDeleted;
+	}
+	
+
+/*
+	@GetMapping("/reservation/status/{status}")
+	public List<Reservation> getAllResStatus(@PathVariable String status) {
+		List<Reservation> reservationList = reservationDaoImpl.getAllResStatus(status);
+		return reservationList;
+	}
+
+//NEEDS WORK
+	@PutMapping("/reservation/{res_id}/chitime/{ch_i_time}")
+	public boolean setResInTime(@PathVariable Time ch_i_time, @PathVariable int res_id) {
+		boolean wasUpdated = reservationDaoImpl.setResInTime(ch_i_time, res_id);
+		return wasUpdated;
+	}
+
+//NEEDS WORK
+	@PutMapping("/reservation/{res_id}/chidate/{ch_i_date}")
+	public boolean setResInDate(@PathVariable Date ch_i_date, @PathVariable int res_id) {
+		boolean wasUpdated = reservationDaoImpl.setResInDate(ch_i_date, res_id);
+		return wasUpdated;
+	}
+
+//NEEDS WORK
+	@PutMapping("/reservation/{res_id}/chotime/{ch_o_time}")
+	public boolean setResOutTime(@PathVariable Time ch_o_time, @PathVariable int res_id) {
+		boolean wasUpdated = reservationDaoImpl.setResOutTime(ch_o_time, res_id);
+		return wasUpdated;
+	}
+
+//NEEDS WORK
+	@PutMapping("/reservation/{res_id}/chodate/{ch_o_date}")
+	public boolean setResOutDate(@PathVariable Date ch_o_date, @PathVariable int res_id) {
+		boolean wasUpdated = reservationDaoImpl.setResOutDate(ch_o_date, res_id);
+		return wasUpdated;
+	}
+
+	@PutMapping("/reservation/{res_id}/status/{status}")
+	public boolean setResStatus(@PathVariable String status, @PathVariable int res_id) {
+		boolean wasUpdated = reservationDaoImpl.setResStatus(status, res_id);
+		return wasUpdated;
+	}
+
+	@PostMapping("/reservation/{res_id}/guest/{g_id}")
+	public boolean changeResToStay(@PathVariable int res_id, @PathVariable int g_id) {
+		
+		Reservation res = reservationDaoImpl.getResById(res_id);
+		Guest guest = guestDaoImpl.getGuestInfoById(g_id);
+		boolean wasChanged = reservationDaoImpl.changeResToStay(res, guest);
+		return wasChanged;
+	}
+*/
+
+}

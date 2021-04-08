@@ -1,0 +1,62 @@
+package com.frontdesk;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.frontdesk.config.AppConfig;
+import com.frontdesk.servicefinder.GuestServiceFinder;
+import com.frontdesk.servicefinder.OnlineUserServiceFinder;
+import com.frontdesk.servicefinder.ReservationServiceFinder;
+import com.frontdesk.servicefinder.RoomServiceFinder;
+import com.frontdesk.servicefinder.StayServiceFinder;
+
+public class SimpleUI {
+
+	ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+	GuestServiceFinder guestServiceFinder;
+
+	RoomServiceFinder roomServiceFinder;
+
+	ReservationServiceFinder reservationServiceFinder;
+
+	StayServiceFinder stayServiceFinder;
+
+	OnlineUserServiceFinder onlineUserServiceFinder;
+
+	//Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setGuestServiceFinder(GuestServiceFinder guestServiceFinder) {
+		this.guestServiceFinder = guestServiceFinder;
+	}
+	
+	//Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setRoomServiceFinder(RoomServiceFinder roomServiceFinder) {
+		this.roomServiceFinder = roomServiceFinder;
+	}
+
+	//Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setReservationServiceFinder(ReservationServiceFinder reservationServiceFinder) {
+		this.reservationServiceFinder = reservationServiceFinder;
+	}
+
+	//Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setStayServiceFinder(StayServiceFinder stayServiceFinder) {
+		this.stayServiceFinder = stayServiceFinder;
+	}
+
+	//Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setOnlineUserServiceFinder(OnlineUserServiceFinder onlineUserServiceFinder) {
+		this.onlineUserServiceFinder = onlineUserServiceFinder;
+	}
+	
+//--------------------------------------------------------------------------------------------------------
+	public static void startUpMenu() {
+	
+	}
+}

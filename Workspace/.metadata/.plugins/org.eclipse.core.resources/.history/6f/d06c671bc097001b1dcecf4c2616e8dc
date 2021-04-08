@@ -1,0 +1,93 @@
+package com.frontdesk.service;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Stay;
+
+@Service
+public class ReservationServiceFinder implements ReservationService {
+
+	//Rest template for easy serialization
+	RestTemplate restTemplate;
+
+	//Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
+//-----------------------------------------------------------------------
+	
+	// Method that requests staykeep to return a list of all reservations.
+	@Override
+	public List<Reservation> getAllRes() {
+		final String URL = "http://localhost:8081/staykeep/reservation";
+		Reservation[] reservation = restTemplate.getForObject(URL, Reservation[].class);
+		return Arrays.asList(reservation);
+	}
+
+	// Method that requests staykeep to return a specific reservation by id.
+	@Override
+	public Reservation getResById(int res_id) {
+		final String URL = "http://localhost:8081/staykeep/reservation/" + res_id;
+		return restTemplate.getForObject(URL, Reservation.class);
+	}
+
+	@Override
+	public void createNewReservation(Reservation reservation) {
+	
+	}
+
+	@Override
+	public void deleteRes(int res_id) {
+		final String URL = "http://localhost:8081/staykeep/reservation/" + res_id;
+		restTemplate.delete(URL, Reservation.class);
+	}
+
+	@Override
+	public List<Reservation> getAllResStatus(String status) {
+		final String URL = "http://localhost:8081/staykeep/reservation/status/" +  status;
+		Reservation[] reservation = restTemplate.getForObject(URL, Reservation[].class);
+		return Arrays.asList(reservation);
+	}
+
+	@Override
+	public void setResInTime(Time ch_i_time, int res_id) {
+		
+	}
+
+	@Override
+	public void setResInDate(Date ch_i_date, int res_id) {
+		
+	}
+
+	@Override
+	public void setResOutTime(Time ch_o_time, int res_id) {
+		
+	}
+
+	@Override
+	public void setResOutDate(Date ch_o_date, int res_id) {
+		
+	}
+
+	@Override
+	public void setResStatus(String status, int res_id) {
+		
+	}
+
+	@Override
+	public void changeResToStay(Reservation res, Guest guest) {
+		
+	}
+
+}

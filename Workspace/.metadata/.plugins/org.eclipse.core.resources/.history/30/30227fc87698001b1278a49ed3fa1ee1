@@ -1,0 +1,81 @@
+package com.frontdesk;
+
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.frontdesk.config.AppConfig;
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.servicefinder.GuestServiceFinder;
+import com.frontdesk.servicefinder.OnlineUserServiceFinder;
+import com.frontdesk.servicefinder.ReservationServiceFinder;
+import com.frontdesk.servicefinder.RoomServiceFinder;
+import com.frontdesk.servicefinder.StayServiceFinder;
+
+public class SimpleUI {
+
+	public static ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+	public static GuestServiceFinder guestServiceFinder = new GuestServiceFinder();
+
+	public static RoomServiceFinder roomServiceFinder = new RoomServiceFinder();
+
+	public static ReservationServiceFinder reservationServiceFinder = new ReservationServiceFinder();
+
+	public static StayServiceFinder stayServiceFinder = new StayServiceFinder();
+
+	public static OnlineUserServiceFinder onlineUserServiceFinder = new OnlineUserServiceFinder();
+
+	public static Scanner scanner = new Scanner(System.in);
+
+//--------------------------------------------------------------------------------------------------------
+	public static void startUpMenu() {
+		String inputString = "x";
+
+		// test 1
+		List<Guest> allGuests = guestServiceFinder.getAllGuests();
+		System.out.println(allGuests);
+		inputString = scanner.next();
+
+		// test 2
+		Guest guestFour = guestServiceFinder.getGuestInfoById(4);
+		System.out.println("Guest 4 is" + guestFour);
+		inputString = scanner.next();
+
+		// test 3
+		Guest g = new Guest();
+		g.setCc_num("1234-4444-3333-2222");
+		g.setF_name("GuestNumber");
+		g.setL_name("Four");
+		guestServiceFinder.createNewGuest(g);
+		inputString = scanner.next();
+
+		// test 4
+		guestServiceFinder.deleteGuest(1);
+		inputString = scanner.next();
+
+		// test 5
+		// Actually changing Stacy Reynolds cc_num
+		Guest forCCNUM = new Guest();
+		forCCNUM.setCc_num("1234-4444-3232-2222");
+		forCCNUM.setF_name("duh");
+		forCCNUM.setL_name("whatever");
+		forCCNUM.setG_id(3);
+		guestServiceFinder.setGuestCcnum(forCCNUM);
+		inputString = scanner.next();
+
+		// test 6
+		// Actually changing Stacy Reynolds first name
+		guestServiceFinder.setGuestFname(forCCNUM);
+		inputString = scanner.next();
+		
+		// test 7
+		// Actually changing Stacy Reynolds last name
+		guestServiceFinder.setGuestLname(forCCNUM);
+		inputString = scanner.next();
+
+	}
+}

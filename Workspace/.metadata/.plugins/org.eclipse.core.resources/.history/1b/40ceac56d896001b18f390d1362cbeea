@@ -1,0 +1,18 @@
+package com.staykeep.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.staykeep.daoimpl.OnlineUserDaoImpl;
+
+
+
+public class OnlineUserController {
+	// OnlineUserDaoImpl object holding functionality.
+	private OnlineUserDaoImpl onlineUserDaoImpl;
+
+	//Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setOnlineUserDaoImpl(OnlineUserDaoImpl onlineUserDaoImpl) {
+		this.onlineUserDaoImpl = onlineUserDaoImpl;
+	}
+}

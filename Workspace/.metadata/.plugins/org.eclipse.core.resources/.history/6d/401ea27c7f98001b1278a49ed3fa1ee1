@@ -1,0 +1,140 @@
+package com.frontdesk;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.http.ResponseEntity;
+
+import com.frontdesk.config.AppConfig;
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.OnlineUser;
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Room;
+import com.frontdesk.pojo.Stay;
+import com.frontdesk.servicefinder.GuestServiceFinder;
+import com.frontdesk.servicefinder.OnlineUserServiceFinder;
+import com.frontdesk.servicefinder.ReservationServiceFinder;
+import com.frontdesk.servicefinder.RoomServiceFinder;
+import com.frontdesk.servicefinder.StayServiceFinder;
+
+public class Driver {
+
+	public static void main(String[] args) {
+
+		ApplicationContext appContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		
+		GuestServiceFinder guestServiceFinder = appContext.getBean("guestServiceFinder",GuestServiceFinder.class);
+		
+		// test 3 - passed
+			
+		Guest g = new Guest();
+		g.setCc_num("1234-4444-3333-2222");
+		g.setF_name("totally");
+		g.setL_name("new");
+		ResponseEntity<Object> brandnewboy= guestServiceFinder.createNewGuest(g);
+		Guest newbie = (Guest) brandnewboy;
+
+		/*
+		 * Features Documentation (all methods have basic documentation) 
+		 * Unit testing (100% coverage) 
+		 * Logging 
+		 * 1 Java application that will handle a publicly facing REST API 
+		 * 
+		 * 3 additional Java applications that will handle parts of the logic
+		 * at least 2 of the applications communicate to one another using REST 
+		 * at least 2 of the applications communicate to one another using SOAP 
+		 * at least 1 JMS Topic for applications to communicate 
+		 * at least 1 JMS Queue for applications to communicate
+		 * 
+		 * Tech Stack 
+		 * Java JUnit 
+		 * Log4J Git SCM (on GitHub) 
+		 * Spring Framework 
+		 * Spring JDBC Template 
+		 * Spring JMS Template 
+		 * ActiveMQ 
+		 * REST 
+		 * SOAP 
+		 * Spring Transactions (JTA)
+		 */
+	}
+}
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		// TEST to see if a room status is changed when a new stay is added.
+		StayServiceFinder stayServiceFinder = appContext.getBean("stayServiceFinder", StayServiceFinder.class);
+
+		Stay stay = new Stay();
+		Time chit = Time.valueOf("5:30:00");
+		Date chid = Date.valueOf("2021-04-07");
+		Time chot = Time.valueOf("10:00:00");
+		Date chod = Date.valueOf("2021-04-09");
+		int g_id = 6;
+		int r_id = 7;
+		float bill = 100.00f;
+		boolean is_current = true;
+		//------------------------
+		stay.setCh_i_time(chit);
+		stay.setCh_i_date(chid);
+		stay.setCh_o_time(chot);
+		stay.setCh_o_date(chod);
+		stay.setG_id(g_id);
+		stay.setR_id(r_id);
+		stay.setBill(bill);
+		stay.setIs_current(is_current);
+		//-----------------------------------
+		stayServiceFinder.createNewStay(stay);
+		
+		System.out.println("FrontDesk is just happy to be involved....");
+
+		String exit = "";
+
+		Scanner scan = new Scanner(System.in);
+
+		do {
+
+			exit = scan.nextLine();
+
+		} while (!"exit".equals(exit));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/

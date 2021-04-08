@@ -1,0 +1,35 @@
+package com.staykeep.dao;
+
+import java.util.List;
+
+import com.staykeep.pojo.Guest;
+
+//Interface for handling Database functions concerning Stay objects.
+public interface GuestDao {
+
+	// Abstract method that returns a list of all guests.
+	public List<Guest> getAllGuests();
+
+	// Abstract method that returns the guest with the specified id.
+	public Guest getGuestInfoById(int g_id);
+	
+	// Abstract method that returns a boolean that represents whether the
+	// new guest insertion was successful or not.
+	public void createNewGuest(Guest guest);
+	
+	// Abstract method that returns a boolean that represents whether the
+	// specified guest deletion was successful or not.
+	public void deleteGuest(int g_id);
+	
+	// Abstract method that returns a boolean that represents whether the
+	// first name change in the specified guest was successful or not.
+	public void setGuestFname(Guest guest);
+	
+	// Abstract method that returns a boolean that represents whether the
+	// last name change in the specified guest was successful or not.
+	public void setGuestLname(Guest guest);
+	
+	// Abstract method that returns a boolean that represents whether the
+	// credit card number change in the specified guest was successful or not.
+	public void setGuestCcnum(Guest guest);
+}

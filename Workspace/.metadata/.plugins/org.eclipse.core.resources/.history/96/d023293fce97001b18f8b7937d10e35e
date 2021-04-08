@@ -1,0 +1,77 @@
+package com.frontdesk.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.OnlineUser;
+
+@Service
+public class OnlineUserServiceFinder implements OnlineUserService {
+
+	// Rest template for easy serialization
+	RestTemplate restTemplate;
+
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
+//-----------------------------------------------------------------------
+	
+	// Method that requests the return of a list of all OnlineUsers.
+	@Override
+	public List<OnlineUser> getAllOnlineUsers() {
+		final String URL = "http://localhost:8081/staykeep/user";
+		OnlineUser[] onlineUsers = restTemplate.getForObject(URL, OnlineUser[].class);
+		return Arrays.asList(onlineUsers);
+	}
+
+	// Method that requests the return of a specific OnlineUser by id.
+	@Override
+	public OnlineUser getOnlineUserInfoById(int u_id) {
+		final String URL = "http://localhost:8081/staykeep/user/" + u_id;
+		return restTemplate.getForObject(URL, OnlineUser.class);
+	}
+
+	// Method that requests a new OnlineUser be made.
+	@Override
+	public void createNewOnlineUser(OnlineUser onlineUser) {
+		final String URL = "http://localhost:8081/staykeep/user";
+		restTemplate.postForEntity(URL, onlineUser, null);
+	}
+
+	// Method that requests the first name change of a specific OnlineUser by id.
+	@Override
+	public void deleteOnlineUser(int u_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + u_id;
+		restTemplate.delete(URL, Guest.class);
+	}
+
+	// Method that requests the user name change of a OnlineUser by id.
+	@Override
+	public void setOnlineUserUserName(String user_name, int u_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + u_id + "/un/" + user_name;
+		restTemplate.put(URL, null);
+
+	}
+
+	// Method that requests the password change of a OnlineUser by id.
+	@Override
+	public void setOnlineUserPassword(String pass_word, int u_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + u_id + "/un/" + pass_word;
+		restTemplate.put(URL, null);
+	}
+
+	// Method that requests the email change of a OnlineUser by id.
+	@Override
+	public void setOnlineUserEmail(String email, int u_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + u_id + "/un/" + email;
+		restTemplate.put(URL, null);
+	}
+}

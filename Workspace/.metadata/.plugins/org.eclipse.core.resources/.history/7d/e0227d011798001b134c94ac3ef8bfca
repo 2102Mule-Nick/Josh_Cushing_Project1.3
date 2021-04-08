@@ -1,0 +1,132 @@
+package com.frontdesk;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.frontdesk.config.AppConfig;
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Room;
+import com.frontdesk.pojo.Stay;
+import com.frontdesk.servicefinder.GuestServiceFinder;
+import com.frontdesk.servicefinder.RoomServiceFinder;
+import com.frontdesk.servicefinder.StayServiceFinder;
+
+
+public class Driver {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+		StayServiceFinder stayServiceFinder = applicationContext.getBean("stayServiceFinder",StayServiceFinder.class);
+		//---------------------------------
+		String input = scanner.next();
+		 
+		// test 1 - passed
+		/*
+		List<Stay> allStay = stayServiceFinder.getAllStays();
+		System.out.println(allStay);
+		*/
+		
+		// test 2 - passed	
+		/*
+		Stay aStay = stayServiceFinder.getStayInfoById(3);
+		System.out.println(aStay);
+		*/	
+		
+		//test 3 - passed - pay attention to the formatting
+		/*
+		Stay stay = new Stay();
+		Time chit = Time.valueOf("5:30:00");
+		Date chid = Date.valueOf("2021-04-07");
+		Time chot = Time.valueOf("10:30:00");;
+		Date chod = Date.valueOf("2021-04-09");
+		int g_id = 2;
+		int r_id = 3;
+		float bill = 123.32f;
+		boolean is_current = false;
+		//
+		stay.setCh_i_time(chit);
+		stay.setCh_i_date(chid);
+		stay.setCh_o_time(chot);
+		stay.setCh_o_date(chod);
+		stay.setG_id(g_id);
+		stay.setR_id(r_id);
+		stay.setBill(bill);
+		stay.setIs_current(is_current);
+		//	
+		stayServiceFinder.createNewStay(stay);
+		*/
+		
+		//test 4 - passed
+		/*
+		stayServiceFinder.deleteStay(6);
+		*/
+		
+		//test 5
+		stayServiceFinder.setIsCurrent(true, 1);
+		
+		
+		
+		
+		
+		// test 1 - passed
+		/*
+		List<Room> allRooms = roomServiceFinder.getAllRooms();
+		System.out.println(allRooms);
+		 */
+		
+		// test 2 - passed
+		/*
+		Room room = roomServiceFinder.getRoomInfoById(4);
+		System.out.println(room);
+		 */
+		
+		// test 3 - passed
+		/*
+		Room room = new Room();
+		room.setBed_num(2);
+		room.setBed_size("double");
+		room.setCpn(200.00f);
+		room.setLux_lev("whoops");
+		room.setStatus("test");
+		
+		roomServiceFinder.createNewRoom(room);
+		 */
+		
+		// test 4 - passed
+		/*
+		roomServiceFinder.deleteRoom(63);
+		*/
+		
+		// test 5 - passed
+		/*
+		List<Room> allResettingRooms = roomServiceFinder.getRoomsByStatus("resetting");
+		System.out.println(allResettingRooms);
+		*/
+		
+		// test 6 - passed
+		/*
+		List<Reservation> allresList = roomServiceFinder.getReservationsByRoom(3);
+		System.out.println(allresList);
+		*/
+		
+		// test 7 - passed
+		/*
+		List<Stay> allStayList = roomServiceFinder.getStaysByRoom(2);
+		System.out.println(allStayList);
+		*/
+		
+		// test 8 - passed
+		/*
+		roomServiceFinder.setRoomStatus("Occupied", 47);
+		*/
+	}
+}

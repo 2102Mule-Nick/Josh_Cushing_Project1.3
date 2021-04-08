@@ -1,0 +1,5 @@
+package com.frontdesk.config;
+
+public class AppConfig {
+
+}

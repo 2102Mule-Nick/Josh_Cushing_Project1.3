@@ -1,0 +1,71 @@
+package com.frontdesk.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Room;
+import com.frontdesk.pojo.Stay;
+
+@Service
+public class RoomServiceFinder implements RoomService {
+
+	@Override
+	public List<Room> getAllRooms() {
+		final String URL = "http://localhost:8081/staykeep/room";
+		RestTemplate restTemplate = new RestTemplate();
+		Room[] rooms = restTemplate.getForObject(URL, Room[].class);
+		return Arrays.asList(rooms);
+	}
+
+	
+	@Override
+	public Room getRoomInfoById(int r_id) {
+		final String URL = "http://localhost:8081/staykeep/room/" + r_id;
+		RestTemplate restTemplate = new RestTemplate();
+		return restTemplate.getForObject(URL, Room.class);
+	}
+
+	@Override
+	public boolean createNewRoom(String status, int bed_num, String bed_size, String lux_lev, float cpn) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteRoom(int r_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Room> getRoomsByStatus(String status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reservation> getReservationsByRoom(int r_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Stay> getStaysByRoom(int r_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setRoomStatus(String status, int r_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

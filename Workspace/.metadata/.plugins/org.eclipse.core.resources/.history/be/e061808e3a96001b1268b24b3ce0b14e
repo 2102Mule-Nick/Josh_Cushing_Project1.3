@@ -1,0 +1,44 @@
+package com.staykeep.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.RoomDaoImpl;
+import com.staykeep.pojo.Reservation;
+import com.staykeep.pojo.Room;
+
+@RestController
+public class RoomController {
+
+	private RoomDaoImpl roomDaoImpl;
+	
+	@Autowired
+	public void setRoomDaoImpl(RoomDaoImpl roomDaoImpl) {
+		this.roomDaoImpl = roomDaoImpl;
+	}
+//-----------------------------------------------------
+	
+	@GetMapping("/room/{r_id}")
+	public Room getRoomInfoById(@PathVariable int r_id) {
+		Room room = roomDaoImpl.getRoomInfoById(r_id);
+		return room;
+	}
+	
+	@GetMapping("/room")
+	public List<Room> getAllRooms(){
+		List<Room> roomList = roomDaoImpl.getAllRooms();
+		return roomList;
+	}
+	
+	@GetMapping("/room")
+	public List<Reservation> getReservationsByRoom(@PathVariable int r_id){
+		List<Reservation> reservationList = roomDaoImpl.getReservationsByRoom(r_id);
+		return reservationList;
+	}
+}

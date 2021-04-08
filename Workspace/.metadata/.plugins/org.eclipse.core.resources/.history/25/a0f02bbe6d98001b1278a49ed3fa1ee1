@@ -1,0 +1,140 @@
+package com.frontdesk;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+import java.util.Scanner;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.frontdesk.config.AppConfig;
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.OnlineUser;
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Room;
+import com.frontdesk.pojo.Stay;
+import com.frontdesk.servicefinder.GuestServiceFinder;
+import com.frontdesk.servicefinder.OnlineUserServiceFinder;
+import com.frontdesk.servicefinder.ReservationServiceFinder;
+import com.frontdesk.servicefinder.RoomServiceFinder;
+import com.frontdesk.servicefinder.StayServiceFinder;
+
+
+public class Driver {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+
+		ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+		ReservationServiceFinder reservationServiceFinder = applicationContext.getBean("reservationServiceFinder", ReservationServiceFinder.class);
+
+		//---------------------------------
+
+		String input = scanner.next();
+		 
+		// test 1 - passed
+		/*
+		List<Reservation> ouList = reservationServiceFinder.getAllRes();
+		System.out.println(ouList);
+		*/
+		
+		// test 2 - passed	
+		/*
+		Reservation reservation = reservationServiceFinder.getResById(2);
+		System.out.println(reservation);
+		*/
+		
+		//test 3 - passed - pay attention to the formatting
+		/*
+		Reservation reservation = new Reservation();
+		Time chit = Time.valueOf("5:30:00");
+		Date chid = Date.valueOf("2021-04-07");
+		Time chot = Time.valueOf("10:30:00");
+		Date chod = Date.valueOf("2021-04-09");
+		reservation.setCh_i_time(chit);
+		reservation.setCh_i_date(chid);
+		reservation.setCh_o_time(chot);
+		reservation.setCh_o_date(chod);
+		reservation.setR_id(4);
+		reservation.setU_id(3);
+		reservation.setStatus("canceled");
+		reservationServiceFinder.createNewReservation(reservation);
+		*/
+		
+		//test 4 - passed
+		/*
+		reservationServiceFinder.deleteRes(6);
+		*/
+		
+		//test 5 - passed
+		/*
+		List<Reservation> resList = reservationServiceFinder.getAllResStatus("upcoming");
+		System.out.println(resList);
+		*/
+		
+		
+		
+		//test 6 - passed
+				/*
+		OnlineUser onlineUser = new OnlineUser();
+		onlineUser.setU_id(1);
+		onlineUser.setUser_name("NewGuyOnTheBlock");
+		onlineUser.setPass_word("avenueQ");
+		onlineUser.setEmail("muppetsrthebest420@gmail.net");
+		onlineUserServiceFinder.setOnlineUserPassword(onlineUser);
+		*/
+		
+		
+		Reservation reservation = new Reservation();
+		reservation.setRes_id(2);
+		Time chit = Time.valueOf("1:11:00");
+		Date chid = Date.valueOf("1111-11-11");
+		Time chot = Time.valueOf("22:22:00");
+		Date chod = Date.valueOf("2002-02-02");
+		reservation.setCh_i_time(chit);
+		reservation.setCh_i_date(chid);
+		reservation.setCh_o_time(chot);
+		reservation.setCh_o_date(chod);
+		reservation.setR_id(4);
+		reservation.setU_id(3);
+		reservation.setStatus("canceled");
+		
+		//reservationServiceFinder.setResInTime(reservation);
+		//reservationServiceFinder.setResInDate(reservation);
+		//reservationServiceFinder.setResOutTime(reservation);
+		reservationServiceFinder.setResOutDate(reservation);
+		
+		
+		
+		
+		
+		
+		//test 7 - passed
+		/*
+		OnlineUser onlineUser = new OnlineUser();
+		onlineUser.setU_id(1);
+		onlineUser.setUser_name("NewGuyOnTheBlock");
+		onlineUser.setPass_word("avenueQ");
+		onlineUser.setEmail("muppetsrthebest420@gmail.net");
+		onlineUserServiceFinder.setOnlineUserUserName(onlineUser);
+		*/
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}

@@ -1,0 +1,5 @@
+package com.staykeep.jms;
+
+public class JMSMessageSender {
+
+}

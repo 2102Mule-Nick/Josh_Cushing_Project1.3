@@ -1,0 +1,89 @@
+package com.frontdesk.service;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.client.RestTemplate;
+
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.Stay;
+
+@Service
+public class StayServiceFinder implements StayService {
+
+	// Rest template for easy serialization
+	RestTemplate restTemplate;
+
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
+// -----------------------------------------------------------------------
+
+	// Method that requests staykeep to return a list of all stays.
+	@Override
+	public List<Stay> getAllStays() {
+		final String URL = "http://localhost:8081/staykeep/stay";
+		Stay[] stays = restTemplate.getForObject(URL, Stay[].class);
+		return Arrays.asList(stays);
+	}
+
+	// Method that requests staykeep to return a specific stay by id.
+	@Override
+	public Stay getStayInfoById(int s_id) {
+		final String URL = "http://localhost:8081/staykeep/stay/" + s_id;
+		return restTemplate.getForObject(URL, Stay.class);
+	}
+
+	
+	@Override
+	public void createNewStay(Stay stay) {
+
+	}
+
+	@Override
+	public void deleteStay(int s_id) {
+		final String URL = "http://localhost:8081/staykeep/stay/" + s_id;
+		restTemplate.delete(URL, Stay.class);
+	}
+
+	@Override
+	public void setIsCurrent(boolean is_current, int s_id) {
+		final String URL = "http://localhost:8081/staykeep/stay/" + s_id + "/current/" + is_current;
+		restTemplate.put(URL, null);
+	}
+
+	@Override
+	public void setBill(float bill, int s_id) {
+		final String URL = "http://localhost:8081/staykeep/stay/" + s_id + "/bill/" + bill;
+		restTemplate.put(URL, null);
+	}
+
+//Need help setting up date/time
+	@Override
+	public void setStayInTime(Time ch_i_time, int s_id) {
+		// HALP
+	}
+
+	@Override
+	public void setStayInDate(Date ch_i_date, int s_id) {
+		// HALP
+	}
+
+	@Override
+	public void setStayOutTime(Time ch_o_time, int s_id) {
+		// HALP
+	}
+
+	@Override
+	public void setStayOutDate(Date ch_o_date, int s_id) {
+		// HALP
+	}
+}

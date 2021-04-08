@@ -1,0 +1,24 @@
+package com.staykeep.daoimpl;
+
+import java.util.List;
+
+import com.staykeep.dao.OnlineUserDao;
+import com.staykeep.pojo.OnlineUser;
+
+public class OnlineUserDaoImpl implements OnlineUserDao{
+
+	
+	// JDBC Template to use for database connection.
+	private JdbcTemplate jdbcTemplate;
+
+	// OnlineUserRowMapper to return Room objects from database.
+	private OnlineUserRowMapper onlineUserRowMapper;
+	
+	@Override
+	public List<OnlineUser> getAllOnlineUsers() {
+		String sql = "SELECT * FROM online_user";
+		 List<OnlineUser> ouList = jdbcTemplate.query(sql, roomRowMapper);
+		return ouList;
+	}
+
+}

@@ -1,0 +1,141 @@
+package com.staykeep.controller;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.GuestDaoImpl;
+import com.staykeep.daoimpl.ReservationDaoImpl;
+import com.staykeep.pojo.Guest;
+import com.staykeep.pojo.Reservation;
+import com.staykeep.pojo.Stay;
+
+//REST Controller for all database functionality concerning reservation objects.
+@RestController
+public class ReservationController {
+
+	// ReservationDaoImpl object holding functionality.
+	private ReservationDaoImpl reservationDaoImpl;
+
+	// GuestDaoImpl object holding functionality.
+	private GuestDaoImpl guestDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setReservationDaoImpl(ReservationDaoImpl reservationDaoImpl) {
+		this.reservationDaoImpl = reservationDaoImpl;
+	}
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setGuestDaoImpl(GuestDaoImpl guestDaoImpl) {
+		this.guestDaoImpl = guestDaoImpl;
+	}
+
+//--------------------------------------------------------------------------------------
+//1
+	// Controller method that returns a list of all reservations.
+	@GetMapping("/reservation")
+	public List<Reservation> getAllRes() {
+		List<Reservation> reservationList = reservationDaoImpl.getAllRes();
+		return reservationList;
+	}
+
+//-----------------------------------------------------------------------
+//2
+	// Controller method that returns a specific reservation by id.
+	@GetMapping("/reservation/{res_id}")
+	public Reservation getResById(@PathVariable int res_id) {
+		Reservation reservation = reservationDaoImpl.getResById(res_id);
+		return reservation;
+	}
+
+//-----------------------------------------------------------------------
+//3
+	// Controller that creates a new reservation.
+	@PostMapping("/reservation")
+	public void createNewReservation(@RequestBody Reservation reservation) {
+		reservationDaoImpl.createNewReservation(reservation);
+	}
+
+//-----------------------------------------------------------------------
+//4
+	// Controller that deletes a reservation.
+	@DeleteMapping("/reservation/{res_id}")
+	public void deleteRes(@PathVariable int res_id) {
+		reservationDaoImpl.deleteRes(res_id);
+	}
+
+//-----------------------------------------------------------------------
+//5	
+	// Controller that returns a list of all reservations with a certain status.
+	@GetMapping("/reservation/status/{status}")
+	public List<Reservation> getAllResStatus(@PathVariable String status) {
+		List<Reservation> reservationList = reservationDaoImpl.getAllResStatus(status);
+		return reservationList;
+	}
+
+//-----------------------------------------------------------------------
+//6		
+	@PutMapping("/reservation/it")
+	public void setResInTime(@RequestBody Reservation reservation) {
+		reservationDaoImpl.setResInTime(reservation);
+	}
+
+//-----------------------------------------------------------------------
+//7		
+	@PutMapping("/reservation/id")
+	public void setResInDate(@RequestBody Reservation reservation) {
+		reservationDaoImpl.setResInDate(reservation);
+	}
+
+//-----------------------------------------------------------------------
+//8	
+	@PutMapping("/reservation/ot")
+	public void setResOutTime(@RequestBody Reservation reservation) {
+		reservationDaoImpl.setResOutTime(reservation);
+	}
+
+//-----------------------------------------------------------------------
+//9	
+	@PutMapping("/reservation/od")
+	public void setResOutDate(@RequestBody Reservation reservation) {
+		reservationDaoImpl.setResOutDate(reservation);
+	}
+
+//-----------------------------------------------------------------------
+//10
+	@PutMapping("/reservation/{res_id}/status/{status}")
+	public boolean setResStatus(@PathVariable String status, @PathVariable int res_id) {
+		boolean wasUpdated = reservationDaoImpl.setResStatus(status, res_id);
+		return wasUpdated;
+	}
+
+	/*
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * @PostMapping("/reservation/{res_id}/guest/{g_id}") public boolean
+	 * changeResToStay(@PathVariable int res_id, @PathVariable int g_id) {
+	 * 
+	 * Reservation res = reservationDaoImpl.getResById(res_id); Guest guest =
+	 * guestDaoImpl.getGuestInfoById(g_id); boolean wasChanged =
+	 * reservationDaoImpl.changeResToStay(res, guest); return wasChanged; }
+	 */
+
+}

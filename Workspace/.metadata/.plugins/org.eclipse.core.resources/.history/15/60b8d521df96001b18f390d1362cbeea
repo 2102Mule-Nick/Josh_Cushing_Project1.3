@@ -1,0 +1,40 @@
+package com.staykeep.dao;
+
+import java.util.List;
+
+import com.staykeep.pojo.OnlineUser;
+
+//Interface for handling Database functions concerning OnlineUser objects.
+public interface OnlineUserDao {
+
+	// Abstract method that returns a list of all online users.
+	public List<OnlineUser> getAllOnlineUsers();
+	
+	// Abstract method that returns the online user with the specified id.
+	public OnlineUser getOnlineUserInfoById(int u_id);
+	
+	// Abstract method that returns a boolean that represents whether the
+	// new online user insertion was successful or not.
+	public boolean createNewOnlineUser(String user_name, String pass_word, String email);
+	
+	// Abstract method that returns a boolean that represents whether the
+	// specified online user deletion was successful or not.
+	public boolean deleteOnlineUser(int u_id);
+	
+/*
+	// Abstract method that returns a boolean that represents whether the
+	// user name change in the specified online user was successful or not.
+	public boolean setOnlineUserUserName(String user_name, int u_id);
+	
+
+	// Abstract method that returns a boolean that represents whether the
+	// password change in the specified online user was successful or not.
+	public boolean setOnlineUserPassword(String pass_word, int u_id);
+
+	// Abstract method that returns a boolean that represents whether the
+	// email change in the specified online user was successful or not.
+	public boolean setOnlineUserEmail(String email, int u_id);
+
+	
+*/
+}

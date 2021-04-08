@@ -1,0 +1,16 @@
+package com.staykeep.daoimpl;
+
+import java.util.List;
+
+import com.staykeep.dao.OnlineUserDao;
+import com.staykeep.pojo.OnlineUser;
+
+public class OnlineUserDaoImpl implements OnlineUserDao{
+
+	@Override
+	public List<OnlineUser> getAllOnlineUsers() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

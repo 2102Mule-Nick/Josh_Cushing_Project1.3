@@ -1,0 +1,73 @@
+package com.staykeep.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.OnlineUserDaoImpl;
+import com.staykeep.pojo.OnlineUser;
+
+
+//REST Controller for all database functionality concerning OnlineUser objects.
+@RestController
+public class OnlineUserController {
+	
+	// OnlineUserDaoImpl object holding functionality.
+	private OnlineUserDaoImpl onlineUserDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setOnlineUserDaoImpl(OnlineUserDaoImpl onlineUserDaoImpl) {
+		this.onlineUserDaoImpl = onlineUserDaoImpl;
+	}
+
+//-----------------------------------------------------------------------------
+
+	// Controller method that returns a list of all OnlineUsers.
+	@GetMapping("/onlineuser")
+	public List<OnlineUser> getAllOnlineUsers() {
+		List<OnlineUser> userList = onlineUserDaoImpl.getAllOnlineUsers();
+		return userList;
+	}
+	
+	// Controller method that returns a single OnlineUser by id.
+	@GetMapping("/onlineuser/{u_id}")
+	public OnlineUser getOnlineUserInfoById(@PathVariable int u_id) {
+		OnlineUser onlineUser = onlineUserDaoImpl.getOnlineUserInfoById(u_id);
+		return onlineUser;
+	}
+	
+//FIGURE OUT HOW TO DO SYMBOLS WHEN SENDING STRINGS
+//RIGHT NOW IT WONT DOD THINGS LIKE "@" or "."
+	@PostMapping("/onlineuser/{user_name}/{pass_word}/{email}")
+	public boolean createNewOnlineUser(@PathVariable String user_name, @PathVariable String pass_word, @PathVariable String email){
+		boolean wasInserted = onlineUserDaoImpl.createNewOnlineUser(user_name, pass_word, email);
+		return wasInserted;
+	}
+	
+	@DeleteMapping("/onlineuser/{u_id}")
+	public boolean deleteOnlineUser(@PathVariable int u_id) {
+		boolean wasDeleted = onlineUserDaoImpl.deleteOnlineUser(u_id);
+		return wasDeleted;
+	}
+	
+
+	@PutMapping("/onlineuser/{u_id}/u/{user_name}")
+	public boolean setOnlineUserUserName(@PathVariable int u_id, @PathVariable String user_name) {
+		boolean wasUpdated = onlineUserDaoImpl.setOnlineUserUserName(user_name, u_id);
+		return wasUpdated;
+	}
+	
+	@PutMapping("/onlineuser/{u_id}/p/{pass_word}")
+	public boolean setOnlineUserPassword(@PathVariable int u_id, @PathVariable String pass_word) {
+		boolean wasUpdated = onlineUserDaoImpl.setOnlineUserPassword(pass_word, u_id);
+		return wasUpdated;
+	}
+
+}

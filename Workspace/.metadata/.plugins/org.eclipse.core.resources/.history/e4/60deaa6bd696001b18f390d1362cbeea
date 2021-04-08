@@ -1,0 +1,96 @@
+package com.staykeep.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.GuestDaoImpl;
+import com.staykeep.pojo.Guest;
+
+//REST Controller for all database functionality concerning guest objects.
+@RestController
+public class GuestController {
+
+	// GuestDaoImpl object holding functionality.
+	private GuestDaoImpl guestDaoImpl;
+
+	//Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setGuestDaoImpl(GuestDaoImpl guestDaoImpl) {
+		this.guestDaoImpl = guestDaoImpl;
+	}
+	
+//---------------------------------------------------------------------
+	
+	// Controller method that returns a list of all guests.
+	@GetMapping("/guest")
+	public List<Guest> getAllGuests() {
+		List<Guest> guestList = guestDaoImpl.getAllGuests();
+		return guestList;
+	}
+
+	// Controller method that returns a single guest by id.
+	@GetMapping("/guest/{g_id}")
+	public Guest getGuestInfoById(@PathVariable int g_id) {
+		Guest guest = guestDaoImpl.getGuestInfoById(g_id);
+		return guest;
+	}
+
+	// Controller method that creates a new guest.
+	// Returns TRUE if successful.
+	@PostMapping("/guest/{f_name}/{l_name}/{cc_num}")
+	public boolean creatNewGuest(@PathVariable String f_name, @PathVariable String l_name, @PathVariable String cc_num) {
+		boolean wasInserted = guestDaoImpl.createNewGuest(f_name, l_name, cc_num);
+		return wasInserted;
+	}
+	
+	//Controller method that deletes a guest by id.
+	// Returns TRUE if successful.
+	@DeleteMapping("/guest/{g_id}")
+	public boolean deleteGuest(@PathVariable int g_id) {
+		boolean wasDeleted = guestDaoImpl.deleteGuest(g_id);
+		return wasDeleted;
+	}
+
+	// Controller method that sets a guest's first name by id.
+	// Returns TRUE if successful.
+	@PutMapping("/guest/{g_id}/f/{f_name}")
+	public boolean setGuestFname(@PathVariable int g_id, @PathVariable String f_name) {
+		boolean wasUpdated = guestDaoImpl.setGuestFname(f_name, g_id);
+		return wasUpdated;
+	}
+
+	// Controller method that sets a guest's last name by id.
+	// Returns TRUE if successful.
+	@PutMapping("/guest/{g_id}/l/{l_name}")
+	public boolean setGuestLname(@PathVariable int g_id, @PathVariable String l_name) {
+		boolean wasUpdated = guestDaoImpl.setGuestLname(l_name, g_id);
+		return wasUpdated;
+	}
+
+	
+	
+	
+/*	
+	
+	
+	
+	
+	//Controller method that sets a guest's credit card number by id.
+	// Returns TRUE if successful.
+	@PutMapping("/guest/{g_id}/payment/{cc_num}")
+	public boolean setGuestCcnum(@PathVariable int g_id, @PathVariable String cc_num) {
+		boolean wasUpdated = guestDaoImpl.setGuestCcnum(cc_num, g_id);
+		return wasUpdated;
+	}
+	
+	
+
+	*/
+}

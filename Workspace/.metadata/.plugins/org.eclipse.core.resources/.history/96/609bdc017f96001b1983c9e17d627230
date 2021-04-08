@@ -1,0 +1,28 @@
+package com.staykeep.dao;
+
+import java.util.List;
+import com.staykeep.pojo.Reservation;
+import com.staykeep.pojo.Room;
+import com.staykeep.pojo.Stay;
+
+//Interface for handling Database functions concerning Room objects.
+public interface RoomDao {
+
+	// Abstract method that returns a list of all rooms.
+	public List<Room> getAllRooms();
+
+	// Abstract method that returns the room with the specified id.
+	public Room getRoomInfoById(int r_id);
+
+	// Abstract method that returns a list of rooms with the specified status.
+	public List<Room> getRoomsByStatus(String status);
+	
+	// Abstract method that returns a list of reservations in the specified room.
+	public List<Reservation> getReservationsByRoom(int r_id);
+
+	// Abstract method that returns a list of stays in the specified room.
+	public List<Stay> getStaysByRoom(int r_id);
+	
+	// Abstract method that returns true
+	public boolean setRoomStatus(String status, int r_id);
+}

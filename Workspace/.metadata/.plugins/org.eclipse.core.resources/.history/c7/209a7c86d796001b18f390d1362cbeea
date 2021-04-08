@@ -1,0 +1,5 @@
+package com.staykeep.daoimpl;
+
+public class OnlineUserDaoImpl {
+
+}

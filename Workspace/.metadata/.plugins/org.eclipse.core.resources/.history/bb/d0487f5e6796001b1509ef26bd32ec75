@@ -1,0 +1,91 @@
+package com.staykeep.controller;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.RoomDaoImpl;
+import com.staykeep.daoimpl.StayDaoImpl;
+import com.staykeep.pojo.Reservation;
+import com.staykeep.pojo.Stay;
+
+//REST Controller for all database functionality concerning stay objects.
+@RestController
+public class StayController {
+	
+	
+	//StayDaoImpl object holding functionality.
+	private StayDaoImpl stayDaoImpl;
+	
+	//Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setStayDaoImpl(StayDaoImpl stayDaoImpl) {
+		this.stayDaoImpl = stayDaoImpl;
+	}
+	
+//-----------------------------------------------------------------------------
+
+	@GetMapping("/stay/{s_id}")
+	public Stay getStayInfoById(@PathVariable int s_id) {
+		
+		return stayList.get(0);
+	}
+
+
+	@GetMapping("/")
+	public List<Stay> getAllStays() {
+		
+		return stayList;
+	}
+
+
+	@PutMapping("/")
+	public void createNewStay(@PathVariable Time ch_i_time, @PathVariable Date ch_i_date, @PathVariable Time ch_o_time, @PathVariable Date ch_o_date, @PathVariable int g_id, @PathVariable int r_id,
+			@PathVariable float bill, @PathVariable boolean is_current) {
+		
+
+	}
+
+
+	@SetMapping("/")
+	public void setStayInTime(Time ch_i_time, int s_id) {
+		
+	}
+
+	@SetMapping("/")
+	public void setStayInDate(Date ch_i_date, int s_id) {
+		
+
+	}
+
+	@SetMapping("/")
+	public void setStayOutTime(Time ch_o_time, int s_id) {
+		
+	}
+
+	@SetMapping("/")
+	public void setStayOutDate(Date ch_o_date, int s_id) {
+		
+
+	}
+
+	@SetMapping("/")
+	public void setIsCurrent(boolean is_current) {
+		
+		
+	}
+	
+	
+	
+/*
+	public void changeResToStay(Reservation res) {
+		
+	}
+*/
+	
+}

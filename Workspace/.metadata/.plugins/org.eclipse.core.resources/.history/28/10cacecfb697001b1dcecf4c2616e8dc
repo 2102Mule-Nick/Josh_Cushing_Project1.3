@@ -1,0 +1,93 @@
+package com.frontdesk.service;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Stay;
+
+@Service
+public class ReservationServiceFinder implements ReservationService {
+
+	RestTemplate restTemplate;
+
+	@Autowired
+	public void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
+//-----------------------------------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public List<Reservation> getAllRes() {
+		final String URL = "http://localhost:8081/staykeep/reservation";
+		Reservation[] reservation = restTemplate.getForObject(URL, Reservation[].class);
+		return Arrays.asList(reservation);
+	}
+
+	@Override
+	public Reservation getResById(int res_id) {
+		return null;
+	}
+
+	@Override
+	public void createNewReservation(Time ch_i_time, Date ch_i_date, Time ch_o_time, Date ch_o_date, int r_id,
+			int u_id, String status) {
+		
+	}
+
+	@Override
+	public void deleteRes(int res_id) {
+		
+	}
+
+	@Override
+	public List<Reservation> getAllResStatus(String status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setResInTime(Time ch_i_time, int res_id) {
+		
+	}
+
+	@Override
+	public void setResInDate(Date ch_i_date, int res_id) {
+		
+	}
+
+	@Override
+	public void setResOutTime(Time ch_o_time, int res_id) {
+		
+	}
+
+	@Override
+	public void setResOutDate(Date ch_o_date, int res_id) {
+		
+	}
+
+	@Override
+	public void setResStatus(String status, int res_id) {
+		
+	}
+
+	@Override
+	public void changeResToStay(Reservation res, Guest guest) {
+		
+	}
+
+}

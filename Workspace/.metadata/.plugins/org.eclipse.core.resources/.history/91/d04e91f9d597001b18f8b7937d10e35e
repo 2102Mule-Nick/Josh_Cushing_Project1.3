@@ -1,0 +1,100 @@
+package com.staykeep.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.OnlineUserDaoImpl;
+import com.staykeep.pojo.OnlineUser;
+
+//REST Controller for all database functionality concerning OnlineUser objects.
+@RestController
+public class OnlineUserController {
+
+	// OnlineUserDaoImpl object holding functionality.
+	private OnlineUserDaoImpl onlineUserDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setOnlineUserDaoImpl(OnlineUserDaoImpl onlineUserDaoImpl) {
+		this.onlineUserDaoImpl = onlineUserDaoImpl;
+	}
+
+//-----------------------------------------------------------------------------
+//1
+	// Controller method that returns a list of all OnlineUsers.
+	@GetMapping("/user")
+	public List<OnlineUser> getAllOnlineUsers() {
+		List<OnlineUser> userList = onlineUserDaoImpl.getAllOnlineUsers();
+		return userList;
+	}
+
+//-----------------------------------------------------------------------------
+//2
+	// Controller method that returns a single OnlineUser by id.
+	@GetMapping("/user/{u_id}")
+	public OnlineUser getOnlineUserInfoById(@PathVariable int u_id) {
+		OnlineUser onlineUser = onlineUserDaoImpl.getOnlineUserInfoById(u_id);
+		return onlineUser;
+	}
+
+//-----------------------------------------------------------------------------
+//3
+	// Controller method that creates a new OnlineUser.
+	@PostMapping("/user")
+	public void createNewOnlineUser(@RequestBody OnlineUser onlineUser) {
+		onlineUserDaoImpl.createNewOnlineUser(onlineUser);
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// Method that returns a boolean that represents whether the
+	// specified online user deletion was successful or not.
+	@DeleteMapping("/user/{u_id}")
+	public void deleteOnlineUser(@PathVariable int u_id) {
+		boolean wasDeleted = onlineUserDaoImpl.deleteOnlineUser(u_id);
+		return wasDeleted;
+	}
+
+	// Method that returns a boolean that represents whether the
+	// user-name change in the specified online user was successful or not.
+	@PutMapping("/user/setup/username")
+	public void setOnlineUserUserName(@RequestHeader(value = "id") int u_id,
+										 @RequestHeader(value = "username") String user_name) {
+		boolean wasUpdated = onlineUserDaoImpl.setOnlineUserUserName(user_name, u_id);
+		return wasUpdated;
+	}
+
+	// Method that returns a boolean that represents whether the
+	// password change in the specified online user was successful or not.
+	@PutMapping("/user/setup/password")
+	public void setOnlineUserPassword(@RequestHeader(value = "id") int u_id, 
+										 @RequestHeader(value = "password") String pass_word) {
+		boolean wasUpdated = onlineUserDaoImpl.setOnlineUserPassword(pass_word, u_id);
+		return wasUpdated;
+	}
+
+	// Method that returns a boolean that represents whether the
+	// email change in the specified online user was successful or not.
+	@PutMapping("/user/setup/email")
+	public void setOnlineUserEmail(@RequestHeader(value = "id") int u_id,
+							          @RequestHeader(value = "email") String email) {
+		boolean wasUpdated = onlineUserDaoImpl.setOnlineUserEmail(email, u_id);
+		return wasUpdated;
+	}
+}

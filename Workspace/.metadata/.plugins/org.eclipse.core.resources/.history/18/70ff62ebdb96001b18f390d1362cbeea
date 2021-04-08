@@ -1,0 +1,39 @@
+package com.staykeep.daoimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import com.staykeep.dao.OnlineUserDao;
+import com.staykeep.mapper.OnlineUserRowMapper;
+import com.staykeep.pojo.OnlineUser;
+
+public class OnlineUserDaoImpl implements OnlineUserDao {
+
+	// JDBC Template to use for database connection.
+	private JdbcTemplate jdbcTemplate;
+
+	// OnlineUserRowMapper to return Room objects from database.
+	private OnlineUserRowMapper onlineUserRowMapper;
+
+	// Auto-wired setter --> nothing calls this.
+	@Autowired
+	public void setJdbcdTemplate(JdbcTemplate jdbcdTemplate) {
+		this.jdbcTemplate = jdbcdTemplate;
+	}
+
+	// Auto-wired setter --> nothing calls this.
+	@Autowired
+	public void setOnlineUserRowMapper(OnlineUserRowMapper onlineUserRowMapper) {
+		this.onlineUserRowMapper = onlineUserRowMapper;
+	}
+//-------------------------------------------------------------------------
+	
+	@Override
+	public List<OnlineUser> getAllOnlineUsers() {
+		String sql = "SELECT u_id, user_name, pass_word, email FROM online_user";
+		List<OnlineUser> ouList = jdbcTemplate.query(sql, onlineUserRowMapper);
+		return ouList;
+	}
+}

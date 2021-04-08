@@ -1,0 +1,64 @@
+package com.frontdesk.service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.frontdesk.pojo.Reservation;
+import com.frontdesk.pojo.Room;
+import com.frontdesk.pojo.Stay;
+
+@Service
+public class RoomServiceFinder implements RoomService {
+
+	private static final String ROOM_URL = "http://localhost:8080/FlashCard/flashCard";
+	
+	@Override
+	public List<Room> getAllRooms() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Room getRoomInfoById(int r_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean createNewRoom(String status, int bed_num, String bed_size, String lux_lev, float cpn) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteRoom(int r_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<Room> getRoomsByStatus(String status) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reservation> getReservationsByRoom(int r_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Stay> getStaysByRoom(int r_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setRoomStatus(String status, int r_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

@@ -1,0 +1,57 @@
+package com.frontdesk.service;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.Reservation;
+
+public interface ReservationService {
+		
+		// Abstract method that returns a list of all reservations.
+		public List<Reservation> getAllRes();
+
+		// Abstract method that returns the reservation with the specified id.
+		public Reservation getResById(int res_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// new reservation insertion was successful or not.
+		public boolean createNewReservation(Time ch_i_time, Date ch_i_date, Time ch_o_time, Date ch_o_date, int r_id,
+				int u_id, String status);
+
+		// Abstract method that returns a boolean that represents whether the
+		// specified reservation deletion was successful or not.
+		public boolean deleteRes(int res_id);
+
+		// Abstract method that returns a list of all reservations with the specified
+		// status.
+		public List<Reservation> getAllResStatus(String status);
+		
+
+		// Abstract method that returns a boolean that represents whether the
+		// check-in time change for the specified reservation was successful or not.
+		public boolean setResInTime(Time ch_i_time, int res_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// check-in date change for the specified reservation was successful or not.
+		public boolean setResInDate(Date ch_i_date, int res_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// check-out time change for the specified reservation was successful or not.
+		public boolean setResOutTime(Time ch_o_time, int res_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// check-out date change for the specified reservation was successful or not.
+		public boolean setResOutDate(Date ch_o_date, int res_id);
+
+		
+		// Abstract method that returns a boolean that represents whether the
+		// status change for the specified reservation was successful or not.
+		public boolean setResStatus(String status, int res_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// transfer from a specified reservation to a stay was successful or not.
+		public boolean changeResToStay(Reservation res, Guest guest);
+		 
+}

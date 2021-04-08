@@ -1,0 +1,41 @@
+package com.staykeep.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.staykeep.daoimpl.OnlineUserDaoImpl;
+import com.staykeep.pojo.Guest;
+import com.staykeep.pojo.OnlineUser;
+
+public class OnlineUserController {
+	
+	// OnlineUserDaoImpl object holding functionality.
+	private OnlineUserDaoImpl onlineUserDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setOnlineUserDaoImpl(OnlineUserDaoImpl onlineUserDaoImpl) {
+		this.onlineUserDaoImpl = onlineUserDaoImpl;
+	}
+
+//-----------------------------------------------------------------------------
+
+//DOESN'T WORK FOR SOME REASON ASK NICK OR CLASS
+	// Controller method that returns a list of all OnlineUsers.
+	@GetMapping("/onlineuser")
+	public List<OnlineUser> getAllOnlineUsers() {
+		List<OnlineUser> userList = onlineUserDaoImpl.getAllOnlineUsers();
+		return userList;
+	}
+	
+	// Controller method that returns a single guest by id.
+	@GetMapping("/onlineuse/{u_id}")
+	public OnlineUser getOnlineUserInfoById(@PathVariable int u_id) {
+		OnlineUser onlineUser = onlineUserDaoImpl.getOnlineUserInfoById(u_id);
+		return onlineUser;
+	}
+
+}

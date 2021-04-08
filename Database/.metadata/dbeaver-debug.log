@@ -1,0 +1,87 @@
+2021-04-06 14:06:22.492 - Create display
+> Start Eclipse IDE UI [org.eclipse.ui.ide 3.18.0.v20201119-1132]
+2021-04-06 14:06:22.601 - DBeaver 21.0.0.202103021012 is starting
+2021-04-06 14:06:22.604 - OS: Windows 10 10.0 (amd64)
+2021-04-06 14:06:22.605 - Java version: 11.0.5 by AdoptOpenJDK (64bit)
+2021-04-06 14:06:22.606 - Install path: 'file:/C:/Program Files/DBeaver/'
+2021-04-06 14:06:22.606 - Instance path: 'file:/C:/P2.0/Database/'
+2021-04-06 14:06:22.606 - Memory available 64Mb/1024Mb
+2021-04-06 14:06:22.614 - Starting RMI server at 43081
+2021-04-06 14:06:22.689 - Run workbench
+> Start Eclipse e4 Workbench SWT [org.eclipse.e4.ui.workbench.swt 0.15.0.v20201103-0952]
+> Start Eclipse Application Services [org.eclipse.e4.core.services 2.2.500.v20200928-2213]
+> Start Eclipse Contexts [org.eclipse.e4.core.contexts 1.8.400.v20191217-1710]
+> Start Eclipse UI Application Services [org.eclipse.e4.ui.services 1.4.0.v20201014-0944]
+> Start ICU4J Base [com.ibm.icu.base 58.2.0.v20170418-1837]
+> Start EMF Common [org.eclipse.emf.common 2.21.0.v20200917-1439]
+> Start EMF Ecore [org.eclipse.emf.ecore 2.23.0.v20200630-0516]
+> Start EMF XML/XMI Persistence [org.eclipse.emf.ecore.xmi 2.16.0.v20190528-0725]
+> Start Eclipse UI Dependency Injection [org.eclipse.e4.ui.di 1.2.900.v20201021-1339]
+> Start Eclipse e4 Workbench Add-ons [org.eclipse.e4.ui.workbench.addons.swt 1.4.0.v20201119-1132]
+> Start Expression Language [org.eclipse.core.expressions 3.7.0.v20200720-1126]
+> Start Eclipse e4 Workbench SWT Renderer [org.eclipse.e4.ui.workbench.renderers.swt 0.15.0.v20201125-0918]
+> Start Eclipse Bindings Support [org.eclipse.e4.ui.bindings 0.13.0.v20201119-1132]
+> Start Eclipse Dependency Injection Extensions [org.eclipse.e4.core.di.extensions 0.16.0.v20200507-0938]
+> Start Eclipse CSS SWT Support [org.eclipse.e4.ui.css.swt 0.14.0.v20201103-0952]
+> Start Java Native Access [com.sun.jna 4.5.1.v20190425-1842]
+> Start Eclipse CSS SWT Theme Support [org.eclipse.e4.ui.css.swt.theme 0.13.0.v20201026-1147]
+> Start DBeaver UI [org.jkiss.dbeaver.ui 5.1.67.202103021012]
+2021-04-06 14:06:24.677 - Configure workbench window
+> Start Help System Core [org.eclipse.help 3.8.800.v20200525-0755]
+2021-04-06 14:06:24.893 - Create actions
+2021-04-06 14:06:24.911 - Disable Eclipse action set 'org.eclipse.ui.edit.text.actionSet.annotationNavigation'
+2021-04-06 14:06:24.912 - Disable Eclipse action set 'org.eclipse.ui.WorkingSetActionSet'
+2021-04-06 14:06:27.192 - Initialize workbench window
+2021-04-06 14:06:27.196 - Finish initialization
+> Start Equinox Java Authentication and Authorization Service (JAAS) [org.eclipse.equinox.security 1.3.500.v20200114-1637]
+> Start Internet Connection Management UI [org.eclipse.ui.net 1.3.800.v20200422-1935]
+> Start Internet Connection Management [org.eclipse.core.net 1.3.1000.v20200715-0827]
+> Start Equinox Provisioning Platform Automatic Update Support [org.eclipse.equinox.p2.ui.sdk.scheduler 1.5.0.v20201012-1421]
+> Start Equinox Provisioning Metadata [org.eclipse.equinox.p2.metadata 2.5.100.v20200908-1020]
+> Start Equinox Provisioning Update Checker [org.eclipse.equinox.p2.updatechecker 1.2.300.v20200222-1600]
+> Start DBeaver SQL Model [org.jkiss.dbeaver.model.sql 1.0.42.202103021012]
+2021-04-06 14:06:28.442 - Total database drivers: 88 (88)
+> Start Default Text Editor [org.eclipse.ui.editors 3.13.400.v20200923-1238]
+> Start Text Editor Framework [org.eclipse.ui.workbench.texteditor 3.15.100.v20201116-1727]
+> Start DBeaver UI Editors - Base [org.jkiss.dbeaver.ui.editors.base 1.0.52.202103021012]
+> Start DBeaver UI Editors - SQL [org.jkiss.dbeaver.ui.editors.sql 1.0.52.202103021012]
+> Start DBeaver UI Editors - Data [org.jkiss.dbeaver.ui.editors.data 1.0.52.202103021012]
+> Start DBeaver ERD UI [org.jkiss.dbeaver.erd.ui 3.0.12.202103021012]
+> Start DBeaver ERD Model [org.jkiss.dbeaver.erd.model 1.0.12.202103021012]
+> Start DBeaver Sample Database [org.jkiss.dbeaver.ext.sample.database 1.0.89.202103021012]
+> Start DBeaver Tip of the day [org.jkiss.dbeaver.ext.ui.tipoftheday 1.0.58.202103021012]
+2021-04-06 14:06:30.814 - Open [https://dbeaver.io/product/version.xml]
+> Start DBeaver UI Editors - Connections [org.jkiss.dbeaver.ui.editors.connection 1.0.43.202103021012]
+> Start DBeaver PostgreSQL Support UI [org.jkiss.dbeaver.ext.postgresql.ui 1.0.28.202103021012]
+> Start DBeaver PostgreSQL Support [org.jkiss.dbeaver.ext.postgresql 2.1.125.202103021012]
+> Start DBeaver SSH tunnels UI [org.jkiss.dbeaver.net.ssh.ui 1.0.73.202103021012]
+> Start DBeaver SSH tunnels [org.jkiss.dbeaver.net.ssh 1.0.73.202103021012]
+2021-04-06 14:06:44.332 - Service 'org.jkiss.dbeaver.runtime.ui.UIServiceSecurity' not found
+2021-04-06 14:06:44.821 - Open [https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.pom]
+2021-04-06 14:06:45.063 - Open [https://repo1.maven.org/maven2/org/postgresql/pgjdbc-core-parent/1.1.5/pgjdbc-core-parent-1.1.5.pom]
+2021-04-06 14:06:45.112 - Open [https://repo1.maven.org/maven2/org/postgresql/pgjdbc-versions/1.1.5/pgjdbc-versions-1.1.5.pom]
+2021-04-06 14:06:47.807 - Open [https://repo1.maven.org/maven2/org/postgresql/postgresql/42.2.5/postgresql-42.2.5.jar]
+> Start Equinox Provisioning Core [org.eclipse.equinox.p2.core 2.6.300.v20200211-1504]
+> Start Equinox Provisioning Engine [org.eclipse.equinox.p2.engine 2.6.700.v20200511-1530]
+> Start Equinox Provisioning Metadata Repository [org.eclipse.equinox.p2.metadata.repository 1.3.400.v20191211-1528]
+> Start Equinox Provisioning Repository [org.eclipse.equinox.p2.repository 2.5.0.v20201013-0853]
+> Start Equinox Provisioning UI Support [org.eclipse.equinox.p2.ui 2.6.100.v20200731-1005]
+2021-04-06 14:06:48.179 - Open [https://repo1.maven.org/maven2/net/postgis/postgis-jdbc/2.2.1/postgis-jdbc-2.2.1.pom]
+2021-04-06 14:06:48.215 - Open [https://repo1.maven.org/maven2/net/postgis/postgis-java-aggregator/2.2.1/postgis-java-aggregator-2.2.1.pom]
+2021-04-06 14:06:48.253 - Open [https://repo1.maven.org/maven2/net/postgis/postgis-jdbc/2.2.1/postgis-jdbc-2.2.1.jar]
+2021-04-06 14:06:48.296 - Open [https://repo1.maven.org/maven2/net/postgis/postgis-geometry/2.5.0/postgis-geometry-2.5.0.pom]
+2021-04-06 14:06:48.330 - Open [https://repo1.maven.org/maven2/net/postgis/postgis-java-aggregator/2.5.0/postgis-java-aggregator-2.5.0.pom]
+2021-04-06 14:06:48.370 - Open [https://repo1.maven.org/maven2/org/testcontainers/testcontainers-bom/1.13.0/testcontainers-bom-1.13.0.pom]
+2021-04-06 14:06:48.404 - Open [https://repo1.maven.org/maven2/net/postgis/postgis-geometry/2.5.0/postgis-geometry-2.5.0.jar]
+2021-04-06 14:07:07.037 - Connect with 'postgres' (postgres-jdbc-178a85d8011-4c9a242aac7166b5)
+2021-04-06 14:07:07.090 - Execution context opened (postgres; Main <postgres>; 0)
+2021-04-06 14:07:07.092 - Initiate connection to PostgreSQL database [postgres@localhost] for Main <postgres>
+> Start DBeaver GIS Support [org.jkiss.dbeaver.data.gis 1.0.76.202103021012]
+2021-04-06 14:07:07.275 - Execution context opened (postgres; Metadata <postgres>; 1)
+2021-04-06 14:07:07.276 - Initiate connection to PostgreSQL database [postgres@localhost] for Metadata <postgres>
+2021-04-06 14:07:07.524 - Connected (postgres-jdbc-178a85d8011-4c9a242aac7166b5, PostgreSQL JDBC Driver [42.2.5])
+> Start GEF (MVC) [org.eclipse.gef 3.11.0.201606061308]
+> Start Draw2d [org.eclipse.draw2d 3.10.100.201606061308]
+2021-04-06 14:11:25.116 - DBeaver is stopping
+2021-04-06 14:11:25.124 - Stop RMI server
+2021-04-06 14:11:25.144 - DBeaver shutdown completed

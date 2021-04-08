@@ -1,0 +1,273 @@
+package com.frontdesk;
+
+import java.util.Scanner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.frontdesk.config.AppConfig;
+import com.frontdesk.servicefinder.GuestServiceFinder;
+import com.frontdesk.servicefinder.OnlineUserServiceFinder;
+import com.frontdesk.servicefinder.ReservationServiceFinder;
+import com.frontdesk.servicefinder.RoomServiceFinder;
+import com.frontdesk.servicefinder.StayServiceFinder;
+
+public class SimpleUI {
+
+	private ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+	private GuestServiceFinder guestServiceFinder;
+
+	private RoomServiceFinder roomServiceFinder;
+
+	private ReservationServiceFinder reservationServiceFinder;
+
+	private StayServiceFinder stayServiceFinder;
+
+	private OnlineUserServiceFinder onlineUserServiceFinder;
+
+	private Scanner scanner;
+	
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setGuestServiceFinder(GuestServiceFinder guestServiceFinder) {
+		this.guestServiceFinder = guestServiceFinder;
+	}
+
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setRoomServiceFinder(RoomServiceFinder roomServiceFinder) {
+		this.roomServiceFinder = roomServiceFinder;
+	}
+
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setReservationServiceFinder(ReservationServiceFinder reservationServiceFinder) {
+		this.reservationServiceFinder = reservationServiceFinder;
+	}
+
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setStayServiceFinder(StayServiceFinder stayServiceFinder) {
+		this.stayServiceFinder = stayServiceFinder;
+	}
+
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setOnlineUserServiceFinder(OnlineUserServiceFinder onlineUserServiceFinder) {
+		this.onlineUserServiceFinder = onlineUserServiceFinder;
+	}
+
+	// Auto-wired setter. Nothing calls this.
+	@Autowired
+	public void setScanner(Scanner scan) {
+		this.scanner = scanner;
+	}
+
+//--------------------------------------------------------------------------------------------------------
+	public static void startUpMenu() {
+		String input;
+		
+		do {
+			input = scanner.next();
+			
+		} while (!"0".equals(input));
+		
+		System.out.println("LOTUS HOTEL FRONTDESK");
+		System.out.println("1) Check in customer");
+		System.out.println("2) Check out customer");
+		System.out.println("3) Rooms menu");
+		System.out.println("4) Stays menu");
+		System.out.println("5) Reservations menu");
+		System.out.println("6) Guests menu");
+		System.out.println("0) Exit");
+
+		
+
+		switch (input) {
+		case "1":
+			checkInMenu();
+			break;
+		case "2":
+			checkOutMenu();
+			break;
+		case "3":
+			roomsMenu();
+			break;
+		case "4":
+			staysMenu();
+			break;
+		case "5":
+			reservationsMenu();
+			break;
+		case "6":
+			guestsMenu();
+			break;
+		case "0":
+			System.exit(0);
+			break;
+		default:
+			System.out.println("That's not an option.");
+			startupMenu();
+			break;
+		}
+	}
+}
+
+//OK so make new room works now
+/*
+ * Room room = new Room(); room.setStatus("new"); room.setBed_num(2);
+ * room.setBed_size("single"); room.setLux_lev("luxury"); room.setCpn(300.00f);
+ * 
+ * rsf.createNewRoom(room);
+ */
+
+/*
+ * public static void startupMenu() {
+ * 
+ * Scanner scanner = new Scanner(System.in);
+ * 
+ * //
+ * -----------------------------------------------------------------------------
+ * -----------------------------------------------------------
+ * 
+ * System.out.println("LOTUS HOTEL FRONTDESK");
+ * System.out.println("1) Check in customer");
+ * System.out.println("2) Check out customer");
+ * System.out.println("3) Rooms menu"); System.out.println("4) Stays menu");
+ * System.out.println("5) Reservations menu");
+ * System.out.println("6) Guests menu"); System.out.println("0) Exit");
+ * 
+ * String input = scanner.next();
+ * 
+ * switch (input) { case "1": checkInMenu(); break; case "2": checkOutMenu();
+ * break; case "3": roomsMenu(); break; case "4": staysMenu(); break; case "5":
+ * reservationsMenu(); break; case "6": guestsMenu(); break; case "0":
+ * System.exit(0); break; default: System.out.println("That's not an option.");
+ * startupMenu(); break; }
+ * 
+ * }
+ * 
+ * public static void checkInMenu() { // ApplicationContext because using beans
+ * here is hard. ApplicationContext applicationContext = new
+ * AnnotationConfigApplicationContext(AppConfig.class);
+ * 
+ * // Pull a RoomServiceFinder out of the container. RoomServiceFinder rsf =
+ * applicationContext.getBean(RoomServiceFinder.class);
+ * 
+ * // Pull a GuestServiceFinder out of the container. GuestServiceFinder gsf =
+ * applicationContext.getBean(GuestServiceFinder.class); }
+ * 
+ * public static void checkOutMenu() { // ApplicationContext because using beans
+ * here is hard. ApplicationContext applicationContext = new
+ * AnnotationConfigApplicationContext(AppConfig.class);
+ * 
+ * // Pull a RoomServiceFinder out of the container. RoomServiceFinder rsf =
+ * applicationContext.getBean(RoomServiceFinder.class);
+ * 
+ * // Pull a GuestServiceFinder out of the container. GuestServiceFinder gsf =
+ * applicationContext.getBean(GuestServiceFinder.class); }
+ * 
+ * public static void roomsMenu() { // ApplicationContext because using beans
+ * here is hard. ApplicationContext applicationContext = new
+ * AnnotationConfigApplicationContext(AppConfig.class);
+ * 
+ * // Pull a RoomServiceFinder out of the container. RoomServiceFinder rsf =
+ * applicationContext.getBean(RoomServiceFinder.class);
+ * 
+ * }
+ * 
+ * public static void staysMenu() { // ApplicationContext because using beans
+ * here is hard. ApplicationContext applicationContext = new
+ * AnnotationConfigApplicationContext(AppConfig.class);
+ * 
+ * // Make a stayservicefinder }
+ * 
+ * public static void reservationsMenu() { // ApplicationContext because using
+ * beans here is hard. ApplicationContext applicationContext = new
+ * AnnotationConfigApplicationContext(AppConfig.class);
+ * 
+ * // Make a reservationsservicefinder }
+ * 
+ * public static void guestsMenu() { // ApplicationContext because using beans
+ * here is hard. ApplicationContext applicationContext = new
+ * AnnotationConfigApplicationContext(AppConfig.class);
+ * 
+ * // Pull a GuestServiceFinder out of the container. GuestServiceFinder gsf =
+ * applicationContext.getBean(GuestServiceFinder.class); } }
+ */
+//RSF TESTS
+//input = s.next();
+
+//get-all-rooms test passed
+//List<Room> rooms = rsf.getAllRooms();
+//System.out.println(rooms);
+//input = s.next();
+
+//get-specific-room test passed
+//Room room = rsf.getRoomInfoById(2);
+//System.out.println(room);
+//input = s.next();
+
+//delete-specific-room test passed
+//rsf.deleteRoom(21);
+//input = s.next();
+
+//Get rooms by status test passed
+//List<Room> rooms = rsf.getRoomsByStatus("occupied");
+//System.out.println(rooms);
+
+//Get reservations by room test passed
+//List<Reservation> reservations = rsf.getReservationsByRoom(3);
+//System.out.println(reservations);
+
+//Get stays returns s_id as 0. FIX
+//List<Stay> stays = rsf.getStaysByRoom(2);
+//System.out.println(stays);
+
+//set status test PASSED
+//rsf.setRoomStatus("teststatus", 51);
+//----------------------------------------------------------------------------------------------------------------	
+
+//GSF TESTS
+
+//get-all-guests test passed
+//List<Guest> guests = gsf.getAllGuests();
+//System.out.println(guests);
+
+//get-specific-guests test passed
+//Guest guest = gsf.getGuestInfoById(1);
+//System.out.println(guest);
+
+//delete-specific-guests test passed
+//gsf.deleteGuest(4);
+
+//Change f name passed
+//gsf.setGuestFname("Tracy", 5);
+
+//Change l name passed
+//gsf.setGuestLname("Chapman", 5);
+
+//Change cc_num passed
+//gsf.setGuestCcnum("1234-9999-7890-4321", 6);
+//----------------------------------------------------------------------------------------------------------------		
+//SSF TESTS
+//Still returns s_id as 0 for all tests. FIX
+
+//get all passed
+//List<Stay> stays = ssf.getAllStays();
+//System.out.println(stays);
+
+//get specific passed
+//Stay stay = ssf.getStayInfoById(3);
+//System.out.println(stay);
+
+//delete specific passed
+//ssf.deleteStay(2);
+
+//set is_current passed
+//ssf.setIsCurrent(true, 4);
+
+//set bill passed but does not keep floating decimal
+//ssf.setBill(234.34f, 1);

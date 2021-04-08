@@ -1,0 +1,52 @@
+package com.frontdesk.service;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+
+import com.frontdesk.pojo.Stay;
+
+
+
+public interface StayService {
+	// Abstract method that returns a list of all stays.
+		public List<Stay> getAllStays();
+
+		// Abstract method that returns the stay with the specified id.
+		public Stay getStayInfoById(int s_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// new stay insertion was successful or not.
+		public void createNewStay(Stay stay);
+
+		// Abstract method that returns a boolean that represents whether the
+		// specified stay deletion was successful or not.
+		public void deleteStay(int s_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// is-current change for the specified stay was successful or not.
+		// To clarify, is-current represents if the stay is the one
+		// currently occupying the room.
+		public void setIsCurrent(boolean is_current, int s_id);
+		
+		// Abstract method that returns a boolean that represents whether the
+		// bill change for the specified stay was successful or not.
+		public void setBill(float bill, int s_id);
+		
+		// Abstract method that returns a boolean that represents whether the
+		// check-in time change for the specified stay was successful or not.
+		public void setStayInTime(Time ch_i_time, int s_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// check-in date change for the specified stay was successful or not.
+		public void setStayInDate(Date ch_i_date, int s_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// check-out time change for the specified stay was successful or not.
+		public void setStayOutTime(Time ch_o_time, int s_id);
+
+		// Abstract method that returns a boolean that represents whether the
+		// check-out date change for the specified stay was successful or not.
+		public void setStayOutDate(Date ch_o_date, int s_id);
+
+}

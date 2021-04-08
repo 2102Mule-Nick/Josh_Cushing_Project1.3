@@ -1,0 +1,29 @@
+package com.staykeep.pojo;
+
+// Pojo representing the physical rooms at the hotel.
+public class Room {
+	
+	// Unique serial user id. Also used as physical room number.
+	private int r_id;
+	
+	// Room status. Resetting, Open, Occupied, or Maintenance
+	private String status;
+	
+	// bed number: always 1 or 2
+	private int bed_num;
+	
+	// bed size: Single or double
+	private String bed_size;
+	
+	// luxury level: 
+	private String lux_lev;
+	
+	// cost per night
+	private float cpn;
+
+//-------------------------------------
+
+	
+
+
+}

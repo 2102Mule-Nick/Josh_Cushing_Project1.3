@@ -1,0 +1,75 @@
+package com.frontdesk.service;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.client.RestTemplate;
+
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.Room;
+
+
+
+@Service
+public class GuestServiceFinder implements GuestService {
+	
+	RestTemplate restTemplate;
+	
+	@Autowired
+	public void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+	
+//-----------------------------------------------------------------------
+	
+//good
+	@Override
+	public List<Guest> getAllGuests() {
+		final String URL = "http://localhost:8081/staykeep/guest";
+		Guest[] guest = restTemplate.getForObject(URL, Guest[].class);
+		return Arrays.asList(guest);
+	}
+
+//good
+	@Override
+	public Guest getGuestInfoById(int g_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + g_id;
+		return restTemplate.getForObject(URL, Guest.class);
+	}
+
+//NEEDS WORK
+	@Override
+	public void createNewGuest(String f_name, String l_name, String cc_num) {
+		// TODO Auto-generated method stub
+
+	}
+	
+//good
+	@Override
+	public void deleteGuest(int g_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + g_id;
+		restTemplate.delete(URL, Guest.class);
+	}
+
+	@Override
+	public void setGuestFname(String f_name, int g_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + g_id + "/f/" + f_name;
+		restTemplate.put(URL, null);
+	}
+
+	@Override
+	public void setGuestLname(String l_name, int g_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + g_id + "/l/" + l_name;
+		restTemplate.put(URL, null);
+	}
+
+	@Override
+	public void setGuestCcnum(String cc_num, int g_id) {
+		final String URL = "http://localhost:8081/staykeep/guest/" + g_id + "/payment/" + cc_num;
+		restTemplate.put(URL, null);
+	}
+
+}

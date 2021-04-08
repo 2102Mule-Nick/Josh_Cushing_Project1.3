@@ -1,0 +1,99 @@
+package com.staykeep.daoimpl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import com.staykeep.dao.OnlineUserDao;
+import com.staykeep.mapper.OnlineUserRowMapper;
+
+import com.staykeep.pojo.OnlineUser;
+
+//Implementation for handling Database functions concerning OnlineUser objects.
+@Repository
+public class OnlineUserDaoImpl implements OnlineUserDao {
+
+	// JDBC Template to use for database connection.
+	private JdbcTemplate jdbcTemplate;
+
+	// OnlineUserRowMapper to return Room objects from database.
+	private OnlineUserRowMapper onlineUserRowMapper;
+
+	// Auto-wired setter --> nothing calls this.
+	@Autowired
+	public void setJdbcdTemplate(JdbcTemplate jdbcdTemplate) {
+		this.jdbcTemplate = jdbcdTemplate;
+	}
+
+	// Auto-wired setter --> nothing calls this.
+	@Autowired
+	public void setOnlineUserRowMapper(OnlineUserRowMapper onlineUserRowMapper) {
+		this.onlineUserRowMapper = onlineUserRowMapper;
+	}
+//-------------------------------------------------------------------------
+	
+	// Method that returns a list of all online users.
+	@Override
+	public List<OnlineUser> getAllOnlineUsers() {
+		String sql = "SELECT u_id, user_name, pass_word, email FROM online_user";
+		List<OnlineUser> ouList = jdbcTemplate.query(sql, onlineUserRowMapper);
+		return ouList;
+	}
+
+	// Method that returns the online user with the specified id.
+	@Override
+	public OnlineUser getOnlineUserInfoById(int u_id) {
+		String sql = "SELECT u_id, user_name, pass_word, email FROM online_user WHERE u_id = ?";
+		List<OnlineUser> ouList = jdbcTemplate.query(sql, onlineUserRowMapper, u_id);
+		return ouList.get(0);
+	}
+
+	// Method that returns a boolean that represents whether the
+	// new online user insertion was successful or not.
+	@Override
+	public boolean createNewOnlineUser(String user_name, String pass_word, String email) {
+		String sql = "INSERT INTO online_user (user_name, pass_word, email) VALUES (?, ?, ? )";
+		Object[] args = new Object[] {user_name, pass_word, email};
+		return jdbcTemplate.update(sql, args) == 1;
+	}
+
+	// Method that returns a boolean that represents whether the
+	// specified online user deletion was successful or not.
+	@Override
+	public boolean deleteOnlineUser(int u_id) {
+		String sql = "DELETE FROM online_user WHERE u_id = ?";
+		Object[] args = new Object[] {u_id};
+		return jdbcTemplate.update(sql, args) == 1;
+	}
+
+	// Method that returns a boolean that represents whether the
+	// user name change in the specified online user was successful or not.
+	@Override
+	public boolean setOnlineUserUserName(String user_name, int u_id) {
+		String sql = "UPDATE online_user SET user_name = ? WHERE u_id = ?";
+		Object[] args = new Object[] { user_name, u_id };
+		return jdbcTemplate.update(sql, args) == 1;
+	}
+
+	// Method that returns a boolean that represents whether the
+	// password change in the specified online user was successful or not.
+	@Override
+	public boolean setOnlineUserPassword(String pass_word, int u_id) {
+		String sql = "UPDATE online_user SET pass_word = ? WHERE u_id = ?";
+		Object[] args = new Object[] { pass_word, u_id };
+		return jdbcTemplate.update(sql, args) == 1;
+	}
+
+	// Method that returns a boolean that represents whether the
+	// email change in the specified online user was successful or not.
+	@Override
+	public boolean setOnlineUserEmail(String email, int u_id) {
+		String sql = "UPDATE online_user SET email = ? WHERE u_id = ?";
+		Object[] args = new Object[] { email, u_id };
+		return jdbcTemplate.update(sql, args) == 1;
+	}
+	
+	
+}

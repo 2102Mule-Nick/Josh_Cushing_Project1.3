@@ -1,0 +1,5 @@
+package com.goldpoint.jms;
+
+public class JMSMessageListener {
+
+}

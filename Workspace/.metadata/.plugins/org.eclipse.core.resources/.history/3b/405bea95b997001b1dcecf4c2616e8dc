@@ -1,0 +1,94 @@
+package com.staykeep.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.RoomDaoImpl;
+import com.staykeep.pojo.Reservation;
+import com.staykeep.pojo.Room;
+import com.staykeep.pojo.Stay;
+
+//REST Controller for all database functionality concerning room objects.
+@RestController
+public class RoomController {
+
+	// RoomDaoImpl object holding functionality.
+	private RoomDaoImpl roomDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setRoomDaoImpl(RoomDaoImpl roomDaoImpl) {
+		this.roomDaoImpl = roomDaoImpl;
+	}
+
+//---------------------------------------------------------------------
+
+	// Controller method to return all rooms.
+	// Returns a list of all room objects.
+	@GetMapping("/room")
+	public List<Room> getAllRooms() {
+		List<Room> roomList = roomDaoImpl.getAllRooms();
+		return roomList;
+	}
+
+	// Controller method to return a room with a certain room id.
+	// Returns a room object.
+	@GetMapping("/room/{r_id}")
+	public Room getRoomInfoById(@PathVariable int r_id) {
+		Room room = roomDaoImpl.getRoomInfoById(r_id);
+		return room;
+	}
+
+	// Creates a new room based off the following.
+	@PostMapping("/room")
+	public boolean createNewRoom(@RequestBody Room room) {
+		boolean wasInserted = roomDaoImpl.createNewRoom(status, bed_num, bed_size, lux_lev, cpn);
+		return wasInserted;
+	}
+
+	// Controller method that deletes a room by id.
+	// Returns TRUE if successful.
+	@DeleteMapping("/room/{r_id}")
+	public boolean deleteRoom(@PathVariable int r_id) {
+		boolean wasDeleted = roomDaoImpl.deleteRoom(r_id);
+		return wasDeleted;
+	}
+
+	// Controller method to return all rooms with a certain status.
+	// Returns a list of room objects.
+	@GetMapping("/room/status/{status}")
+	public List<Room> getRoomsByStatus(@PathVariable String status) {
+		List<Room> roomList = roomDaoImpl.getRoomsByStatus(status);
+		return roomList;
+	}
+
+	// Controller method to return all reservations for a certain room.
+	// Returns a list of reservation objects.
+	@GetMapping("/room/{r_id}/reservations")
+	public List<Reservation> getReservationsByRoom(@PathVariable int r_id) {
+		List<Reservation> reservationList = roomDaoImpl.getReservationsByRoom(r_id);
+		return reservationList;
+	}
+
+	// Controller method to return all stays in a certain room.
+	// Returns a list of stay objects.
+	@GetMapping("/room/{r_id}/stays")
+	public List<Stay> getStaysByRoom(@PathVariable int r_id) {
+		List<Stay> stayList = roomDaoImpl.getStaysByRoom(r_id);
+		return stayList;
+	}
+
+	// Controller method to set the status of a certain room.
+	@PutMapping("/room/{r_id}/status/{status}")
+	public void setRoomStatus(@PathVariable int r_id, @PathVariable String status) {
+		roomDaoImpl.setRoomStatus(status, r_id);
+	}
+}

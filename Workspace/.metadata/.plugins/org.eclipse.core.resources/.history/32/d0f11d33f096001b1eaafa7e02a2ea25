@@ -1,0 +1,103 @@
+package com.staykeep.controller;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.staykeep.daoimpl.StayDaoImpl;
+import com.staykeep.pojo.Stay;
+
+//REST Controller for all database functionality concerning stay objects.
+@RestController
+public class StayController {
+
+	// StayDaoImpl object holding functionality.
+	private StayDaoImpl stayDaoImpl;
+
+	// Auto-Wired setter. Nothing calls this.
+	@Autowired
+	public void setStayDaoImpl(StayDaoImpl stayDaoImpl) {
+		this.stayDaoImpl = stayDaoImpl;
+	}
+
+//-----------------------------------------------------------------------------
+//!!!Displays dates in long number format. Find a way to change to normal date format!!!
+
+	// Returns a list of all stays.
+	@GetMapping("/stay")
+	public List<Stay> getAllStays() {
+		List<Stay> stayList = stayDaoImpl.getAllStays();
+		return stayList;
+	}
+
+//ALWAYS RETURNS S_ID as 0. FIGURE IT OUT
+	// Returns a single stay given the id
+	@GetMapping("/stay/{s_id}")
+	public Stay getStayInfoById(@PathVariable int s_id) {
+		Stay stay = stayDaoImpl.getStayInfoById(s_id);
+		return stay;
+	}
+
+//ONLY ACCEPTS LONG FROMAT DATES? CHANGE??
+	// Creates a new list based off the following.
+	@PostMapping("/stay/{ch_i_time}/{ch_i_date}/{ch_o_time}/{ch_o_date}/{g_id}/{r_id}/{bill}/{is_current}")
+	public boolean createNewStay(@PathVariable Time ch_i_time, @PathVariable Date ch_i_date,
+			@PathVariable Time ch_o_time, @PathVariable Date ch_o_date, @PathVariable int g_id, @PathVariable int r_id,
+			@PathVariable float bill, @PathVariable boolean is_current) {
+		boolean wasInserted = stayDaoImpl.createNewStay(ch_i_time, ch_i_date, ch_o_time, ch_o_date, g_id, r_id, bill,
+				is_current);
+		return wasInserted;
+	}
+
+	// Controller method that deletes a stay by id.
+	// Returns TRUE if successful.
+	@DeleteMapping("/stay/{s_id}")
+	public boolean deleteStay(@PathVariable int s_id) {
+		boolean wasDeleted = stayDaoImpl.deleteStay(s_id);
+		return wasDeleted;
+	}
+	
+
+/* 
+	@PutMapping("/stay/itime/{s_id}")
+	public void setStayInTime(@PathVariable Time ch_i_time, @PathVariable int s_id) {
+		stayDaoImpl.setStayInTime(ch_i_time, s_id);
+	}
+
+	@PutMapping("/stay/idate/{s_id}")
+	public void setStayInDate(@PathVariable Date ch_i_date, @PathVariable int s_id) {
+		stayDaoImpl.setStayInDate(ch_i_date, s_id);
+
+	}
+
+	@PutMapping("/stay/otime/{s_id}")
+	public void setStayOutTime(@PathVariable Time ch_o_time, @PathVariable int s_id) {
+		stayDaoImpl.setStayOutTime(ch_o_time, s_id);
+	}
+
+	@PutMapping("/stay/odate/{s_id}")
+	public void setStayOutDate(@PathVariable Date ch_o_date, @PathVariable int s_id) {
+		stayDaoImpl.setStayOutDate(ch_o_date, s_id);
+	}
+
+	@PutMapping("/stay/bill/{s_id}")
+	public void setBill(@PathVariable float bill, @PathVariable int s_id) {
+		// add function to DAO
+
+	}
+
+	@PutMapping("/stay/current/{s_id}")
+	public void setIsCurrent(@PathVariable boolean is_current, @PathVariable int s_id) {
+		stayDaoImpl.setIsCurrent(is_current, s_id);
+	}
+*/
+}
+

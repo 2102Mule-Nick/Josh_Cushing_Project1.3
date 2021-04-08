@@ -1,0 +1,91 @@
+package com.frontdesk.service;
+
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+
+import com.frontdesk.pojo.Guest;
+import com.frontdesk.pojo.Stay;
+
+@Service
+public class StayServiceFinder implements StayService {
+
+	RestTemplate restTemplate;
+
+	@Autowired
+	public void setRestTemplate(RestTemplate restTemplate) {
+		this.restTemplate = restTemplate;
+	}
+
+//-----------------------------------------------------------------------
+
+	//good
+	@Override
+	public List<Stay> getAllStays() {
+		final String URL = "http://localhost:8081/staykeep/stay";
+		Stay[] stays = restTemplate.getForObject(URL, Stay[].class);
+		return Arrays.asList(stays);
+	}
+
+	
+	@Override
+	public Stay getStayInfoById(int s_id) {
+		final String URL = "http://localhost:8081/staykeep/stay/" + s_id;
+		return restTemplate.getForObject(URL, Stay.class);
+	}
+
+	@Override
+	public boolean createNewStay(Time ch_i_time, Date ch_i_date, Time ch_o_time, Date ch_o_date, int g_id, int r_id,
+			float bill, boolean is_current) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean deleteStay(int s_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setIsCurrent(boolean is_current, int s_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setBill(float bill, int s_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setStayInTime(Time ch_i_time, int s_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setStayInDate(Date ch_i_date, int s_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setStayOutTime(Time ch_o_time, int s_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean setStayOutDate(Date ch_o_date, int s_id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

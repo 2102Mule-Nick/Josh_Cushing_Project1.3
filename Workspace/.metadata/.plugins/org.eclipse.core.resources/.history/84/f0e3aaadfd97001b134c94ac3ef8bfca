@@ -1,0 +1,16 @@
+package com.frontdesk;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import com.frontdesk.config.AppConfig;
+
+public class SimpleUI {
+	// ApplicationContext because using beans here is hard.
+			ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
+
+			public static void startUpMenu() {
+				// Pull a RoomServiceFinder out of the container.
+				//RoomServiceFinder rsf = applicationContext.getBean(RoomServiceFinder.class);
+			}
+}
